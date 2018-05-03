@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:log4j.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driverClassName}" />
+        <property name="jdbcUrl" value="${jdbc.url.mam}" />
+        <property name="user" value="${jdbc.username.mam}" />
+        <property name="password" value="${jdbc.password.mam}" />
+        <property name="maxPoolSize" value="20" />
+        <property name="maxIdleTime" value="300" />
+        <property name="checkoutTimeout" value="2000" />
+        <property name="minPoolSize" value="1" />
+        <property name="initialPoolSize" value="5" />
+        <property name="acquireIncrement" value="5" />
+        <property name="maxStatements" value="200" />
+        <property name="maxStatementsPerConnection" value="200" />
+        <property name="idleConnectionTestPeriod" value="120" />
+        <property name="preferredTestQuery" value="select sysdate from dual" />
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocations" value="classpath:hiberbate.cfg.xml"></property>
+    </bean>
+
+    <bean id="loginDao" class="com.cxy.dao.LoginDao">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="loginService" class="com.cxy.service.LoginService">
+        <property name="loginDao" ref="loginDao"></property>
+    </bean>
+
+    <bean id="LoginAction" class="com.cxy.action.LoginAction" scope="prototype">
+        <property name="loginService" ref="loginService"></property>
+    </bean>
+</beans>
