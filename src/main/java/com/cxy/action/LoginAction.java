@@ -16,6 +16,8 @@ public class LoginAction extends BaseAction implements ModelDriven<Student>{
     private Student student = new Student();
 
     private LoginService loginService;
+    private String stuName;
+    private String telphone;
 
     public void setLoginService(LoginService loginService) {
         this.loginService = loginService;
@@ -36,8 +38,37 @@ public class LoginAction extends BaseAction implements ModelDriven<Student>{
         return "login";
     }
 
+//    @Override
+//    public void validate(){
+//
+//        if(student.getStuName() == null){
+//            this.addFieldError("stuName.message","学生姓名不能为空");
+//        }
+//        System.out.println(student.getStuName());
+//        System.out.println(student.getPassWord());
+//        if(student.getPassWord() == null){
+//          this.addFieldError("password.message","密码不能为空");
+//        }
+//    }
+
     @Override
     public Student getModel(){
         return student;
+    }
+
+    public void setStuName(String stuName) {
+        this.stuName = stuName;
+    }
+
+    public String getStuName() {
+        return stuName;
+    }
+
+    public void setTelphone(String telphone) {
+        this.telphone = telphone;
+    }
+
+    public String getTelphone() {
+        return telphone;
     }
 }

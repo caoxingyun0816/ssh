@@ -20,6 +20,8 @@ public class Student {
 
     private int age;
 
+    private int telphone;
+
     private String address;
 
     private String introduce;
@@ -72,6 +74,15 @@ public class Student {
         this.age = age;
     }
 
+    @Column(name = "telphone")
+    public int getTelphone() {
+        return telphone;
+    }
+
+    public void setTelphone(int telphone) {
+        this.telphone = telphone;
+    }
+
     @Column(name = "address")
     public String getAddress() {
         return address;
@@ -99,33 +110,36 @@ public class Student {
 
         if (id != student.id) return false;
         if (age != student.age) return false;
-        if (!stuName.equals(student.stuName)) return false;
-        if (!passWord.equals(student.passWord)) return false;
-        if (!sex.equals(student.sex)) return false;
-        if (!address.equals(student.address)) return false;
-        return introduce.equals(student.introduce);
+        if (telphone != student.telphone) return false;
+        if (stuName != null ? !stuName.equals(student.stuName) : student.stuName != null) return false;
+        if (passWord != null ? !passWord.equals(student.passWord) : student.passWord != null) return false;
+        if (sex != null ? !sex.equals(student.sex) : student.sex != null) return false;
+        if (address != null ? !address.equals(student.address) : student.address != null) return false;
+        return introduce != null ? introduce.equals(student.introduce) : student.introduce == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + stuName.hashCode();
-        result = 31 * result + passWord.hashCode();
-        result = 31 * result + sex.hashCode();
+        result = 31 * result + (stuName != null ? stuName.hashCode() : 0);
+        result = 31 * result + (passWord != null ? passWord.hashCode() : 0);
+        result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + age;
-        result = 31 * result + address.hashCode();
-        result = 31 * result + introduce.hashCode();
+        result = 31 * result + telphone;
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (introduce != null ? introduce.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "student{" +
+        return "Student{" +
                 "id=" + id +
                 ", stuName='" + stuName + '\'' +
                 ", passWord='" + passWord + '\'' +
                 ", sex='" + sex + '\'' +
                 ", age=" + age +
+                ", telphone=" + telphone +
                 ", address='" + address + '\'' +
                 ", introduce='" + introduce + '\'' +
                 '}';

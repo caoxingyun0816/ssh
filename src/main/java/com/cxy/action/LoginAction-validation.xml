@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE struts PUBLIC
-        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
-        "http://struts.apache.org/dtds/struts-2.3.dtd">
-
-<struts>
-</struts>
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+    <!-- 对username属性进行校验 -->
+    <field name="stuName">
+        <!-- 指定username不能为空 -->
+        <field-validator type="requiredstring">
+            <!-- 错误信息 -->
+            <message>用户名不能为空</message>
+        </field-validator>
+        <!--<field-validator type="stringlength">-->
+            <!--<param name="maxLength">10</param>-->
+            <!--<param name="minLength">5</param>-->
+            <!--<message>用户名的长度必须在${maxLength}-${minLength}10之间</message>-->
+        <!--</field-validator>-->
+    </field>
+    <!--<field name="telphone">-->
+        <!--<field-validator type="regex">-->
+            <!--<param name="regexExpression"><![CDATA[^1[0-9]{10}$]]></param>-->
+            <!--<message>电话号必须是以1开头的11位数字</message>-->
+        <!--</field-validator>-->
+    <!--</field>-->
+</validators>
