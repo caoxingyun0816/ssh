@@ -13,6 +13,7 @@
 </head>
 <body>
     cxy
+    <a href="exportExcel.htl">exportExcel</a>
     <c:if test="${result} != null">
         hello${result}!
     </c:if>

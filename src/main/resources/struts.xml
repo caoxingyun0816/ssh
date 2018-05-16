@@ -24,12 +24,12 @@
             <result name="login">../page/success.jsp</result>
             <result name="input">../page/login.jsp</result>
         </action>
-        <!--<action name="exportMyApplyPointAsset" class="com.cxy.action.Homepage" method="exportData">-->
-            <!--<result type="stream">-->
-                <!--<param name="contentType">application/vnd.ms-excel</param>-->
-                <!--<param name="contentDisposition">attachment;filename="myApplyPointAsset.xls"</param>-->
-                <!--<param name="inputName">inputStream</param>-->
-            <!--</result>-->
-        <!--</action>-->
+        <action name="exportExcel" class="com.cxy.action.HomePageAction" method="exportExcel">
+            <result name ="excel" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="contentDisposition">attachment;filename="excel.xls"</param>
+                <param name="inputName">excelStram</param>
+            </result>
+        </action>
     </package>
 </struts>
