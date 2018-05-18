@@ -1,0 +1,142 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echarts</title>
+    <script src="../js/echarts.min.js"></script>
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+
+</head>
+<body>
+    <div id="myEcharts" style="width: 1000px;height: 800px"></div>
+    <div id="main" style="width: 1000px;height: 800px"></div>
+    <script type="text/javascript">
+        var myEcharts = echarts.init(document.getElementById('myEcharts'));
+        var opt = {
+            backgroundColor:'#2c343c',
+            textStyle:'rgba(255,255,255,0.3)',
+            series:[
+                {name:'访问来源',
+                    type:'pie',
+                    radius:'55%',<!--半径-->
+                    data:[
+                        {value:400,name:'搜索引擎'},
+                        {value:400,name:'直接访问'},
+                        {value:400,name:'邮件营销'},
+                        {value:400,name:'游戏广告'},
+                        {value:400,name:'视频广告'}
+                    ],
+                    roseType:'angle',
+                    itemStyle:{
+                        emphasis:{
+                            shadowBlur: 200,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+                    label: {
+                        normal: {
+                            textStyle: {
+                                color: 'rgba(255, 255, 255, 0.3)'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            lineStyle: {
+                                color: 'rgba(255, 255, 255, 0.3)'
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+        myEcharts.setOption(opt);
+
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+
+
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar',
+                'echarts/chart/line'  // 这里加载什么类型图时候就写什么，具体参考echatrs API
+            ],
+            function (ec) {
+
+                var myChart = ec.init(document.getElementById('main'));
+
+                var option = {
+                    title:{
+                        text:'柱状图',
+                        subtext:'统计',
+                        x:'center'
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross',
+                            crossStyle: {
+                                color: '#999'
+                            }
+                        }
+                    },
+                    toolbox: {
+                        feature: {
+                            dataView: {show: true, readOnly: false},
+                            magicType: {show: true, type: ['line', 'bar']},
+                            restore: {show: true},
+                            saveAsImage: {show: true}
+                        }
+                    },
+                    legend: {
+                        data:['HERE','AVERAGE']
+                    },
+                    xAxis: [
+                        {
+                            type: 'category',
+                            data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"],
+                            axisPointer: {
+                                type: 'shadow'
+                            }
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: 'HERE RATE',
+                            min: 0,
+                            max: 1,
+
+                        },
+                        {
+                            type: 'value',
+                            name: 'AVERAGE RATE',
+                            min: 0,
+                            max: 1,
+
+                        }
+                    ],
+                    series: [
+                        {
+                            name:'销量',
+                            type:'bar',
+                            data:[5, 20, 40, 10, 10, 20],
+                            label: {
+                                normal: {
+                                    show: true,
+                                }
+                            },
+                        }
+                    ]
+                };
+
+                myChart.setOption(option);
+            }
+        );
+
+    </script>
+</body>
+</html>

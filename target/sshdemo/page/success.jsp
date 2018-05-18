@@ -9,13 +9,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>Title</title>
+    <title>学生管理界面</title>
 </head>
 <body>
-    cxy
-    <a href="exportExcel.htl">exportExcel</a>
-    <c:if test="${result} != null">
-        hello${result}!
-    </c:if>
+    <h1 style="color: #33fff8;text-align:center">学生管理界面</h1><br>
+    导出EXCEL:<a href="exportExcel.htl">exportExcel</a>
+
 </body>
 </html>

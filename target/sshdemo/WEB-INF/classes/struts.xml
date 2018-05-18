@@ -8,6 +8,7 @@
     <constant name="struts.action.extension" value="htl"></constant>
     <constant name="struts.i18n.encoding" value="utf-8"></constant>
     <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+    <constant name="struts.custom.i18n.resources" value="Application"></constant>
     <package name="cxy" extends="struts-default" namespace="/">
         <!--<result-types>
             <result-type name="json" class="org.apache.struts2.json.JSONResult" />

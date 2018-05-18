@@ -27,6 +27,7 @@ public class HomePageAction extends BaseAction{
         String s = stringBuffer.toString();
 
         excelStram = new ByteArrayInputStream(s.getBytes(),0,s.getBytes().length);
+        System.out.println(this.getText("error"));
         return "excel";
     }
 }
